@@ -1,4 +1,5 @@
 from datetime import datetime
+from datetime import date
 
 class Cuotas:
     def __init__(self,numero_cuota, monto,  estado, fecha_de_vencimiento, metodo_de_pago):
@@ -15,15 +16,15 @@ class Cuotas:
         self.__estado = estado_modificado
     
     def verificar_vencimiento(self):
-        fecha_actual= datetime.now().date
+        fecha_actual = date.today()
 
-        if self.fecha_de_vencimiento<fecha_actual:
-            print("esta cuota no esta vencida y faltan", fecha_actual-self.fecha_de_vencimiento, "dias para vencer")
-        
+        if self.fecha_de_vencimiento < fecha_actual:
+            print("Esta cuota está vencida y ya van", (fecha_actual-self.fecha_de_vencimiento).days,"Dias sin pagar.")
         else:
-            print("Esta cuota si esta vencida")
+            
+            print("Esta cuota no está vencida y faltan",(self.fecha_de_vencimiento-fecha_actual).days, "días para vencer")
         
 
-micuota= Cuotas("True",2021,"veranpo")
+micuota= Cuotas("True",2154,"sin pagar", date(2027,2,12),"debito")
 
 micuota.verificar_vencimiento()

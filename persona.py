@@ -25,3 +25,13 @@ class Persona:
         return self.__nacionalidad
     def set_nacionalidad(self, nacionalidad_modificada):
         self.__nacionalidad = nacionalidad_modificada
+
+    def verificar_mayoria_edad(self):
+        if self.edad >= 18:
+            print(f"{self.nombre_completo} es mayor de edad.")
+        else:
+            print(f"{self.nombre_completo} es menor de edad.")
+
+miPersona = Persona("Lionel Paredes", 19, "DNI", 48892431, "Argentina")
+
+miPersona.verificar_mayoria_edad()
