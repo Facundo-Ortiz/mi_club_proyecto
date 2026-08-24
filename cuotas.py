@@ -23,8 +23,31 @@ class Cuotas:
         else:
             
             print("Esta cuota no está vencida y faltan",(self.fecha_de_vencimiento-fecha_actual).days, "días para vencer")
+
+    def mostrar_dias_vencimiento(self):
+        fecha_actual= date.today()
         
+        print("Faltan",(self.fecha_de_vencimiento-fecha_actual).days, "dais para vencer.")
+
+    def cambiar_fecha_de_vencimiento(self):
+        print("Cambiando fecha de vencimiento.")
+        fecha_actual = date.today()
+
+        if self.fecha_de_vencimiento < fecha_actual:
+            print("Esta cuota está vencida y no se puede cambiar.")
+        else:
+            anio = int(input("Ingrese el año (ej: 2026): "))
+
+            mes = int(input("Ingrese el mes (1-12): "))
+
+            dia = int(input("Ingrese el día: "))
+            self.fecha_de_vencimiento = date(anio, mes, dia)
+            print("La fecha de vencimiento fue actualizada a:", self.fecha_de_vencimiento)
 
 micuota= Cuotas("True",2154,"sin pagar", date(2027,2,12),"debito")
 
 micuota.verificar_vencimiento()
+
+micuota.mostrar_dias_vencimiento()
+
+micuota.cambiar_fecha_de_vencimiento()

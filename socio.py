@@ -45,16 +45,26 @@ class Socio(Persona):
 
         for i in self.lista_socios_totales:
 
-            if self.nombre_completo==nombre_scio:
+            if nombre_scio==self.nombre_completo and self.estado=="suspendido":
                 
-                print("La cuenta de",self.nombre_completo,"ha sido activada.")
+                print("La cuenta de", self.nombre_completo,"ha sido activada.")
                
                 self.estado="activo"
 
+    def cambiar_contrasenia(self):
+        contra_ing= input("Antes de poder cambiar su contraseña. Ingrese su antigua: ")
+
+        if contra_ing==self.get_contrasenia():
+            print("Contraseña aceptada.")
+            contra_nueva= input("Porfavor ahora ingrese su contraseña nueva: ")
+            self.set_contrasenia(contra_nueva)
+            print(f"su contraseña nueva ahora es: {contra_nueva}" )
+        else:
+            print("COntraseña incorrecta")
 
 misocio1= Socio(datetime(2025,3,2),datetime(2025,3,2),"inactivo","sospechoso","aewghts","pablo medina",20,"DNI",48321354,"Argentina")
 
-misocio2= Socio(datetime(2025,3,2),datetime(2025,3,2),"activo","azsa","456456","Alani Rodriguez",22,"DNI",4221314,"Argentina")
+misocio2= Socio(datetime(2025,3,2),datetime(2025,3,2),"suspendido","azsa","456456","Alani Rodriguez",22,"DNI",4221314,"Argentina")
 
 misocio3= Socio(datetime(2025,3,2),datetime(2025,3,2),"activo","logan","123789","Logan Suarez",20,"DNI",48621314,"Argentina")
 
@@ -66,4 +76,6 @@ misocio2.agregar_socio(misocio2)
 misocio3.agregar_socio(misocio3)
 misocio4.agregar_socio(misocio4)
 
-misocio1.activar_socios()
+
+
+misocio2.cambiar_contrasenia()

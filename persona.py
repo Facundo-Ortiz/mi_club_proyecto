@@ -27,11 +27,20 @@ class Persona:
         self.__nacionalidad = nacionalidad_modificada
 
     def verificar_mayoria_edad(self):
+
         if self.edad >= 18:
             print(f"{self.nombre_completo} es mayor de edad.")
         else:
             print(f"{self.nombre_completo} es menor de edad.")
 
-miPersona = Persona("Lionel Paredes", 19, "DNI", 48892431, "Argentina")
+    def verificar_identificacion(self):
+        if self.get_identificacion() is None or str(self.__identificacion).strip() == "" or len(self.get_identificacion())!=8:
+            print("La identificación no es válida: está vacía.")
+            return False
+        else:
+            print("La identificación es válida. Tu DNI es : ",self.get_identificacion())
+            return True
 
-miPersona.verificar_mayoria_edad()
+miPersona = Persona("Lionel Paredes", 19, "DNI","22222222", "Argentina")
+
+miPersona.verificar_identificacion()
