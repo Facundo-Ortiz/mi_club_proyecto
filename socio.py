@@ -48,8 +48,10 @@ class Socio(Persona):
             if self.nombre_completo==nombre_scio:
                 
                 print("La cuenta de",self.nombre_completo,"ha sido activada.")
-               
+            
                 self.estado="activo"
+            else:
+                print("No hay ningun socio que corresponda con el nombre buscado")
 
 
 misocio1= Socio(datetime(2025,3,2),datetime(2025,3,2),"inactivo","sospechoso","aewghts","pablo medina",20,"DNI",48321354,"Argentina")

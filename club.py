@@ -39,6 +39,6 @@ class Club:
             print("Este club es historico con sus: ", anio_actual-self.get_fecha(),"años de antiguedad")
 
 
-miclub= Club("Ateneo","Club de barrio","warnes","Lopez",1972)
+miclub= Club("Ateneo","Club de barrio","warnes","Lopez",2000)
 
 miclub.verificar_antiguedad()
