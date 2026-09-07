@@ -28,9 +28,9 @@ class Persona:
 
     def verificar_mayoria_edad(self):
         if self.edad >= 18:
-            print(f"{self.nombre_completo} es mayor de edad.")
+            return (f"{self.nombre_completo} es mayor de edad.")
         else:
-            print(f"{self.nombre_completo} es menor de edad.")
+            return (f"{self.nombre_completo} es menor de edad.")
 
 miPersona = Persona("Lionel Paredes", 19, "DNI", 48892431, "Argentina")
 

@@ -28,15 +28,15 @@ class Club:
     def mostrar_antiguedad(self):
         anio_actual= datetime.now().year
 
-        print("Este club tiene",anio_actual-self.get_fecha(),"Años De antiguedad")
+        return f'Este club tiene",{anio_actual-self.get_fecha()},"Años De antiguedad'
 
     def verificar_antiguedad(self):
         anio_actual= datetime.now().year
 
         if  anio_actual-self.get_fecha()<50:
-            print("Este club no es historico.")
+            return f'Este club no es historico.'
         else:
-            print("Este club es historico con sus: ", anio_actual-self.get_fecha(),"años de antiguedad")
+            return f'Este club es historico con sus: ", {anio_actual-self.get_fecha()},"años de antiguedad'
 
 
 miclub= Club("Ateneo","Club de barrio","warnes","Lopez",2000)

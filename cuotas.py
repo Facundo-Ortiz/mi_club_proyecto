@@ -19,10 +19,10 @@ class Cuotas:
         fecha_actual = date.today()
 
         if self.fecha_de_vencimiento > fecha_actual:
-            print("Esta cuota está vencida y ya van", (fecha_actual-self.fecha_de_vencimiento).days,"Dias sin pagar.")
+            return f'Esta cuota está vencida y ya van', {fecha_actual-self.fecha_de_vencimiento}.days,'Dias sin pagar.'
         else:
             
-            print("Esta cuota no está vencida y faltan",(self.fecha_de_vencimiento-fecha_actual).days, "días para vencer")
+            return f'Esta cuota no está vencida y faltan', {self.fecha_de_vencimiento-fecha_actual}.days, 'días para vencer'
         
 
 # abs()= convierte valores negativos a postivos :)
