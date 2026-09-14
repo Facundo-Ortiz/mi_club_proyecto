@@ -68,4 +68,4 @@ misocio2.agregar_socio(misocio2)
 misocio3.agregar_socio(misocio3)
 misocio4.agregar_socio(misocio4)
 
-misocio1.activar_socios()a
+misocio1.activar_socios()
