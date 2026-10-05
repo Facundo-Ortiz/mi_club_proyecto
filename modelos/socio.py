@@ -34,8 +34,9 @@ class Socio(Persona):
         dias_inactividad= (fecha_actual-self.ultimo_login).days
 
         if dias_inactividad>=90:
-            print("Esta cuenta ha estado:", dias_inactividad, "Dias inactivos. Suspendiendo cuenta...")
-            self.estado= "suspendido" 
+            self.estado= "suspendido"
+            return f'Esta cuenta ha estado:, {dias_inactividad}, Dias inactivos. Suspendiendo cuenta...)'
+            
 
     def agregar_socio(self,socio):
         self.lista_socios_totales.append(socio)
