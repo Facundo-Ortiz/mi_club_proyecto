@@ -2,8 +2,7 @@
 from datetime import date
 
 class Cuotas:
-    def __init__(self,numero_cuota, monto,  estado, fecha_de_vencimiento, metodo_de_pago):
-        self.numero_cuota = numero_cuota
+    def __init__(self, monto,estado,fecha_de_vencimiento, metodo_de_pago):
         self.monto = monto
         self.__estado = estado
         self.fecha_de_vencimiento = fecha_de_vencimiento
@@ -27,6 +26,3 @@ class Cuotas:
 
 # abs()= convierte valores negativos a postivos :)
 
-micuota= Cuotas("True",2154,"sin pagar", date(2027,2,12),"debito")
-
-micuota.verificar_vencimiento()
