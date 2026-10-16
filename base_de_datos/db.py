@@ -32,11 +32,11 @@ def guardar_socio(conexion,socio):
     
     conexion.commit()
     
-def guardar_cuota(conexion,usuario,cuota):
+def guardar_cuota(conexion,usuario1,cuota):
 
     cursor= conexion.cursor()
 
-    cursor.execute("SELECT id FROM socios WHERE usuario=?",(usuario,))
+    cursor.execute("SELECT id FROM socios WHERE usuario=?",(usuario1,))
 
     fila= cursor.fetchone()
 
@@ -48,7 +48,7 @@ def guardar_cuota(conexion,usuario,cuota):
         cursor.execute("INSERT INTO cuotas(monto, estado, fecha_de_vencimiento, metodo_de_pago,id_socio) " "VALUES(?,?,?,?,?)",(
             cuota.monto,
             cuota.get_estado(),
-            cuota.fecha__de_vencimiento,
+            cuota.fecha_de_vencimiento,
             cuota.metodo_de_pago,
             id_socio,
             )
@@ -60,10 +60,10 @@ def guardar_cuota(conexion,usuario,cuota):
 
     conexion.commit()
 
-def listar_cuotas_de_socio(conexion,usuario):
+def listar_cuotas_de_socio(conexion,usuario1):
     cursor= conexion.cursor()
 
-    cursor.execute("SELECT id FROM socios WHERE usuario=?", (usuario,))
+    cursor.execute("SELECT id FROM socios WHERE usuario=?", (usuario1,))
 
     fila= cursor.fetchone()
 
@@ -74,4 +74,21 @@ def listar_cuotas_de_socio(conexion,usuario):
 
         cursor.execute("SELECT monto,estado,fecha_de_vencimiento,metodo_de_pago FROM cuotas WHERE id_socio=?", (id_socio,))
     
+        return cursor.fetchall()
+    
+
+def buscar_socio_por_usuario(conexion,usuario1):
+    cursor= conexion.cursor()
+
+    cursor.execute("SELECT id FROM socios WHERE usuario=?",(usuario1,))
+
+    fila= cursor.fetchone()
+
+    if fila is None:
+        return None
+    else:
+        id_socio= fila[0]
+
+        cursor.execute("SELECT * from socios WHERE usuario=?", (usuario1,))
+
         return cursor.fetchall()

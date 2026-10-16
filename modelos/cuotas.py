@@ -25,4 +25,3 @@ class Cuotas:
         
 
 # abs()= convierte valores negativos a postivos :)
-
