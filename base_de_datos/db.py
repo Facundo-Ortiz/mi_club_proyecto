@@ -1,4 +1,6 @@
 import sqlite3
+from modelos.socio import Socio
+from datetime import date
 
 def conectar(ruta):
     conexion= sqlite3.connect(ruta)
@@ -122,21 +124,27 @@ def listar_cuotas_de_socio(conexion,usuario1):
         return cursor.fetchall()
     
 
-def buscar_socio_por_usuario(conexion,usuario1):
-    cursor= conexion.cursor()
-
-    cursor.execute("SELECT id FROM socios WHERE usuario=?",(usuario1,))
-
-    fila= cursor.fetchone()
-
+def buscar_socio_por_usuario(conexion, usuario):
+    cursor = conexion.cursor()
+    cursor.execute("SELECT * FROM socios WHERE usuario = ?", (usuario,))
+    fila = cursor.fetchone()
     if fila is None:
         return None
-    else:
-        id_socio= fila[0]
-
-        cursor.execute("SELECT * from socios WHERE usuario=?", (usuario1,))
-
-        return cursor.fetchall()
+    
+    socio = Socio(
+        date.fromisoformat(fila[1]), 
+        date.fromisoformat(fila[2]),
+        fila[3],
+        fila[4],
+        fila[5],
+        fila[6],
+        fila[7],
+        fila[8],
+        fila[9],
+        fila[10],
+        fila[11]
+    )
+    return socio
 
 def anotar_socio_actividad(conexion,usuario,nombre):
     cursor= conexion.cursor()

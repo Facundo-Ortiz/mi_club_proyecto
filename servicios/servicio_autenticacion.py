@@ -1,20 +1,11 @@
 import tkinter as tk #traigo la biblioteca de TKINTER
+from base_de_datos.db import conectar, buscar_socio_por_usuario
+from pathlib import Path
+from modelos.socio import Socio
 
-ventana= tk.Tk() #Este es la variable que es en la ventana
+RUTA_DB = Path(__file__).parent.parent / "club.db"
 
-ventana.title('INICIO DE SESION') #.title sirve para darle un titulo a la ventana.
 
-ventana.geometry('300x350') #.geometry le pasa el ancho y alto de la ventana.
-
-ventana.resizable(False,False) #.resizable permite modificar el tamaño de la ventana, En caso de False False, este no se puede modificar.
-
-etiqueta= tk.Label(ventana, text='Ingrese su nombre:') #tk.Label sirve para agregar texto dentro de la pagina
-
-etiqueta.pack #.pack guarda dentro de la ventana.
-
-ingrso_nombre= tk.Entry(ventana) #tk.entry sirve para agregar entrada de texto dentro de la
-
-ingrso_nombre.pack
 
 
 # Crear una pequeña app con etiqueta de texto 
@@ -22,5 +13,20 @@ ingrso_nombre.pack
 #  entrada para que el usuario ingrese nombre y botón que sea que cuando lo 
 # presiones obtenga el nombre y devuelva el saludo completo . 
 
-ventana.mainloop()
 
+
+def autenticar(usuario, contrasenia):
+    conexion = conectar(RUTA_DB)
+
+    try:
+        socio = buscar_socio_por_usuario(conexion, usuario)
+
+        if socio is None:
+            return None
+
+        if contrasenia != socio.get_contrasenia():
+            return None
+
+        return socio
+    finally:
+        conexion.close()
