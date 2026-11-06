@@ -6,8 +6,6 @@ from modelos.socio import Socio
 RUTA_DB = Path(__file__).parent.parent / "club.db"
 
 
-
-
 # Crear una pequeña app con etiqueta de texto 
 # que sea un saludo integrando el nombre que ingrese el usuario,
 #  entrada para que el usuario ingrese nombre y botón que sea que cuando lo 
@@ -16,17 +14,13 @@ RUTA_DB = Path(__file__).parent.parent / "club.db"
 
 
 def autenticar(usuario, contrasenia):
-    conexion = conectar(RUTA_DB)
+    conexion = conectar(str(RUTA_DB))
+    socio = buscar_socio_por_usuario(conexion, usuario)
+    conexion.close()
 
-    try:
-        socio = buscar_socio_por_usuario(conexion, usuario)
-
-        if socio is None:
-            return None
-
-        if contrasenia != socio.get_contrasenia():
-            return None
-
+    if socio is None:
+        return None
+    if contrasenia == socio.get_contrasenia():
         return socio
-    finally:
-        conexion.close()
+    return None
+

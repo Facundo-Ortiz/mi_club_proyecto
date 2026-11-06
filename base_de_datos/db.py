@@ -9,7 +9,7 @@ def conectar(ruta):
 def crear_tabla(conexion):
     cursor= conexion.cursor()
 
-    cursor.execute("CREATE TABLE IF NOT EXISTS socios(id INTEGER PRIMARY KEY AUTOINCREMENT, ultimo_login TEXT, fecha_inscripcion TEXT, estado TEXT DEFAULT 'Activo', nombre_completo TEXT NOT NULL, edad INTEGER NOT NULL, tipo_identificacion TEXT, identificacion TEXT, nacionalidad TEXT, rol TEXT DEFAULT 'socio', usuario TEXT UNIQUE NOT NULL, contrasenia TEXT NOT NULL)")
+    cursor.execute("CREATE TABLE IF NOT EXISTS socios(id INTEGER PRIMARY KEY AUTOINCREMENT, ultimo_login TEXT, fecha_inscripcion TEXT, estado TEXT DEFAULT 'Activo', nombre_completo TEXT NOT NULL, edad INTEGER NOT NULL, tipo_identificacion TEXT, identificacion TEXT, nacionalidad TEXT, usuario TEXT UNIQUE NOT NULL, contrasenia TEXT NOT NULL, rol TEXT DEFAULT 'socio')")
 
     cursor.execute("CREATE TABLE IF NOT EXISTS cuotas(cuota_id INTEGER PRIMARY KEY AUTOINCREMENT, monto FLOAT NOT NULL, estado TEXT DEFAULT 'Pendiente',fecha_de_vencimiento TEXT NOT NULL,metodo_de_pago TEXT NOT NULL,id_socio INTEGER NOT NULL, FOREIGN KEY (id_socio) REFERENCES socios(id))")
 
@@ -24,18 +24,18 @@ def crear_tabla(conexion):
 
 def guardar_socio(conexion,socio):
     cursor= conexion.cursor()
-    cursor.execute("INSERT INTO socios(ultimo_login,fecha_inscripcion,estado,usuario,contrasenia,nombre_completo,edad,tipo_identificacion,identificacion,nacionalidad,rol)" 
+    cursor.execute("INSERT INTO socios(ultimo_login,fecha_inscripcion,estado,nombre_completo,edad,tipo_identificacion,identificacion,nacionalidad,usuario,contrasenia,rol)" 
                    "VALUES(?,?,?,?,?,?,?,?,?,?,?)",(
-      socio.ultimo_login,
+      socio.ultimo_login.isoformat(),
       socio.fecha_inscripcion.isoformat(), 
       socio.estado,
-      socio.get_usuario(),
-      socio.get_contrasenia(),
       socio.nombre_completo,
       socio.edad,
       socio.get_tipo_identificacion(),
       socio.get_identificacion(),
       socio.get_nacionalidad(),
+      socio.get_usuario(),
+      socio.get_contrasenia(),
       socio.rol ))
     
     conexion.commit()

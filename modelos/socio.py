@@ -3,16 +3,16 @@ from persona import Persona
 from datetime import datetime
 
 class Socio(Persona):
-    def __init__(self,ultimo_login,fecha_inscripcion, estado, usuario, contrasenia, nombre_completo, edad, tipo_identificacion, identificacion, nacionalidad,rol):
+    def __init__(self,ultimo_login,fecha_inscripcion, estado, nombre_completo, edad, tipo_identificacion, identificacion, nacionalidad, usuario, contrasenia,rol):
         super().__init__(nombre_completo, edad, tipo_identificacion, identificacion, nacionalidad)
         self.lista_clubes = []
         self.lista_cuotas = []
         self.lista_socios_totales= []
+        self.ultimo_login= ultimo_login
         self.fecha_inscripcion = fecha_inscripcion
         self.estado = estado
         self.__usuario = usuario
         self.__contrasenia = contrasenia
-        self.ultimo_login= ultimo_login
         self.rol= rol
 
 
