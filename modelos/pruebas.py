@@ -55,5 +55,5 @@ conexion1.commit()
 conexion1.close()
 
 # Probar autenticación
-resultado = autenticar("oi", "deah")
+resultado = autenticar("loco", "didimaestro")
 print("Resultado autenticación:", resultado)
